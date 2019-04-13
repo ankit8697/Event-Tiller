@@ -10,7 +10,10 @@
 <body>
     <button onclick="showCalendar()">Planning an Event</button>
     <button onclick="showAnalysis()">Analysis</button>
-    <canvas id="calendar" width="80" height="40"></canvas>
+    <div id="calendarHolder">
+        <canvas id="calendar" width="80" height="40"></canvas>
+    </div>
+    
     <div id='anaylysis'>
         <select id='tag1'>
             <Option value ='A'>A</Option>
@@ -74,16 +77,31 @@
     var twentytwo = []
     var twentythree = []
 
-
     function showAnalysis() {
-        var button = document.getElementById("calendar");
+        var button = document.getElementById("calendarHolder");
         button.style.display = 'none';
+        console.log(allData)
     }
-    function showCalender() {
-        var button = document.getElementById("calendar");
-        button.style.display = 'block';
+    function showCalendar() {
+        var button = document.getElementById("calendarHolder");
+        button.style.display = "block";
     }
-    
+
+        fetch('/data')
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
+            parseDataIntoBuckets(data)
+        })
+        .catch(err => {
+            
+        })
+
+    function parseDataIntoBuckets(data) {
+        
+    }
+        
     function submitTags(){
         var tag1 = document.getElementById("tag1").options[document.getElementById("tag1").selectedIndex].value;
         var tag2 = document.getElementById("tag2").options[document.getElementById("tag2").selectedIndex].value;
