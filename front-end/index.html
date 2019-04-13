@@ -11,39 +11,13 @@
     <button onclick="showCalendar()">Planning an Event</button>
     <button onclick="showAnalysis()">Analysis</button>
     <canvas id="calendar" width="80" height="40"></canvas>
-    <div id='anaylysis'>
-        <select id='tag1'>
+    <div id='graph'>
+        <select multiple>
             <Option value ='A'>A</Option>
             <Option value ='B'>B</Option>
             <Option value ='C'>C</Option>
             <Option value ='D'>D</Option>
         </select>
-        <select id='tag2'>
-            <Option value ='A'>A</Option>
-            <Option value ='B'>B</Option>
-            <Option value ='C'>C</Option>
-            <Option value ='D'>D</Option>
-        </select>
-        <select id='tag3'>
-            <Option value ='A'>A</Option>
-            <Option value ='B'>B</Option>
-            <Option value ='C'>C</Option>
-            <Option value ='D'>D</Option>
-        </select>
-        <select id='tag4'>
-            <Option value ='A'>A</Option>
-            <Option value ='B'>B</Option>
-            <Option value ='C'>C</Option>
-            <Option value ='D'>D</Option>
-        </select>
-        <select id='tag5'>
-            <Option value ='A'>A</Option>
-            <Option value ='B'>B</Option>
-            <Option value ='C'>C</Option>
-            <Option value ='D'>D</Option>
-        </select>
-        <button onclick="submitTags(AreaChart)">Submit</button>
-        <canvas id='graph' width='80' hight='40'></canvas>
     </div>
 </body>
 
@@ -57,46 +31,7 @@
         var button = document.getElementById("calendar");
         button.style.display = 'block';
     }
-    
-    var e = document.getElementById("tag1");
-    var tag1 = e.options[e.selectedIndex].value;
-    
-    var ctx = document.getElementById('graph').getContext('2d');
-    var AreaChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-    label: 'tag',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: ['rgba(255, 99, 132, 0.2)',],
-    borderColor: ['rgba(255, 99, 132, 1)',],
-    borderWidth: 1
-    },{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: ['rgba(255, 99, 132, 0.2)',],
-    borderColor: ['rgba(255, 99, 132, 1)',],
-    borderWidth: 1 
-    }]
-    },
-    options: {
-    scales: {
-    yAxes: [{
-    ticks: {
-    beginAtZero: true
-    }
-    }]
-    }
-    }
-    });
-    
-    function submitTags(chart){
-        e = document.getElementById("tag1");
-        tag1 = e.options[e.selectedIndex].value;
-        chart.data.label.push(tag1);
-        chart.update();
-    }
+
 
     var ctx = document.getElementById('calendar').getContext('2d');
     var myChart = new Chart(ctx, {
