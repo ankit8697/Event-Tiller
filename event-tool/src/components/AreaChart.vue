@@ -1,78 +1,72 @@
 <template>
-    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <div id="areaChart">
+        <div id="content">
+            <canvas ref="chart"></canvas>
+        </div>
+    </div>
 </template>
 
 <script>
+    import Chart from 'chart.js';
+
     export default {
-        name:'AreaChart',
-        
-        components: {
+        name: 'areaChart',
+        mounted() {
+            var chart = this.$refs.chart;
+            var ctx = chart.getContext("2d");
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
         }
-    }
-        window.onload = function () {
-
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	title: {
-		text: "Daily Email Analysis"
-	},
-	axisX: {
-		valueFormatString: "DDD",
-		minimum: new Date(2017, 1, 5, 23),
-		maximum: new Date(2017, 1, 12, 1)
-	},
-	axisY: {
-		title: "Number of Messages"
-	},
-	legend: {
-		verticalAlign: "top",
-		horizontalAlign: "right",
-		dockInsidePlotArea: true
-	},
-	toolTip: {
-		shared: true
-	},
-	data: [{
-		name: "Received",
-		showInLegend: true,
-		legendMarkerType: "square",
-		type: "area",
-		color: "rgba(40,175,101,0.6)",
-		markerSize: 0,
-		dataPoints: [
-			{ x: new Date(2017, 1, 6), y: 220 },
-			{ x: new Date(2017, 1, 7), y: 120 },
-			{ x: new Date(2017, 1, 8), y: 144 },
-			{ x: new Date(2017, 1, 9), y: 162 },
-			{ x: new Date(2017, 1, 10), y: 129 },
-			{ x: new Date(2017, 1, 11), y: 109 },
-			{ x: new Date(2017, 1, 12), y: 129 }
-		]
-	},
-	{
-		name: "Sent",
-		showInLegend: true,
-		legendMarkerType: "square",
-		type: "area",
-		color: "rgba(0,75,141,0.7)",
-		markerSize: 0,
-		dataPoints: [
-			{ x: new Date(2017, 1, 6), y: 42 },
-			{ x: new Date(2017, 1, 7), y: 34 },
-			{ x: new Date(2017, 1, 8), y: 29 },
-			{ x: new Date(2017, 1, 9), y: 42 },
-			{ x: new Date(2017, 1, 10), y: 53},
-			{ x: new Date(2017, 1, 11), y: 15 },
-			{ x: new Date(2017, 1, 12), y: 12 }
-		]
-	}]
-});
-chart.render();
-
     }
 </script>
 
 <style>
-    
+    #areaChart {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+    #content {
+        margin: auto;
+        width: 1024px;
+        background-color: #FFFFFF;
+        padding: 20px;
+    }
 </style>

@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <AreaChart />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import AreaChart from './components/AreaChart.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    AreaChart
   }
 }
 </script>
