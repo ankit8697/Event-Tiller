@@ -22,7 +22,7 @@ def make_event():
 	ev['audiences'] = []
 	return ev
 	
-def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=daily'):
+def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?&view=daily'):	
 	'''
 		Returns a list of dictionaries representing events at Carleton from the given Carleton Calendar link.
 	'''
@@ -37,7 +37,7 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 		if(cur_class == ['event', 'hasTime']): #selects the html <li> tags that are actually events
 			cur_event = make_event()
 			cur_event['name'] = element.a.text
-			
+				
 			event_url = base_url + element.a.get('href')
 			cur_event['url'] = event_url
 			event_req = requests.get(event_url) #makes a request to the individual event's page
@@ -45,7 +45,7 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 			
 			for event_element in event_content.find_all('span'): #gets information from the individual event's page
 				cur_class = event_element.get('class')
-				if(cur_class == ['time']):
+				if(cur_class == ['time'] and cur_event['start_time']==None):
 					event_time_string = event_element.text
 					event_times = parser.parse_datetime(cur_event['url'], event_time_string)
 					cur_event['start_time'] = event_times[0]
@@ -67,6 +67,7 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 					cur_event['audiences'] = audiences
 				
 			all_events.append(cur_event)
+			event_req.close()
 			
 	return all_events
 	
