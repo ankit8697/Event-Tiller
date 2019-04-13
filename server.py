@@ -11,6 +11,22 @@ def data():
 def root():
     return render_template("index.html")
 
+@app.route('/index.html')
+def index():
+    return render_template("index.html")
+
+@app.route('/graph.html')
+def graph():
+    return render_template("graph.html")
+
+@app.route('/graph')
+def graphServer():
+    return render_template("graph.html")
+
+@app.route('/stylesheet.css')
+def style():
+    return render_template("stylesheet.css")
+
 if __name__ == "__main__":
     CarletonCalendarScrape.main()
     app.run(debug = True)
