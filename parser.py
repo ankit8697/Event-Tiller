@@ -15,7 +15,7 @@ def parse_single_time(time):
     if ampm == 'am':
         return '{:04}'.format(time_int)
     elif ampm == 'pm':
-        return '{:04}'.format(time_int%1200 + 1200)
+        return '{:04}'.format((time_int+ 1200)%2400)
 
 
 def parse_time_range(time_string, start_date):
@@ -23,10 +23,10 @@ def parse_time_range(time_string, start_date):
     for i in range(len(time_components)):
         time_components[i] = time_components[i].rstrip().lstrip()
 
-    if len(time_components) == 1:   # default event length 1 hr
+    if len(time_components) == 1:   # set default event length 1 hr
         time1 = time_components[0]
         start_str = parse_single_time(time1)
-        end_str = str(int(start_time) + 100)
+        end_str = '{:04}'.format((int(start_str) + 100)%2400)
     
     else:
         time1_components = time_components[0].split(' ')
@@ -47,14 +47,14 @@ def parse_time_range(time_string, start_date):
     end_hr = int(end_str[:2])
     end_min = int(end_str[2:])
     
+    if end_str < start_str:
+        day_shift = dt.timedelta(days=1)
+    else:
+        day_shift = dt.timedelta(days=0)
+
     start_time = dt.time(hour=start_hr, minute=start_min)
     end_time = dt.time(hour=end_hr, minute=end_min)
-
-    if end_time < start_time:
-        day_shift = dt.timedelta(days=1)
-        end_date = start_date + day_shift
-    else:
-        end_date = start_date
+    end_date = start_date + day_shift
 
     return start_date, start_time, end_date, end_time
 
@@ -94,8 +94,13 @@ def parse_datetime(url, time_string):
 
 
 def tester():
-    url = '?view=monthly&start_date=2019-04-13&event_id=1774519&date=2019-04-13'
-    raw_time = '10:30 pm – 1:00 am'
+    url = '?view=monthly&start_date=2019-04-13&event_id=1774519&date=2019-02-28'
+    raw_time = '10:30 pm – 11:00 am'
+    datetime_tuple = parse_datetime(url, raw_time)
+    print(datetime_tuple)
+
+    url = '?view=monthly&start_date=2019-04-13&event_id=1774519&date=2016-02-28'
+    raw_time = '11:30 pm'
     datetime_tuple = parse_datetime(url, raw_time)
     print(datetime_tuple)
 
