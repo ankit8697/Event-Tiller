@@ -1,9 +1,9 @@
 def parse_single_time(time, ampm):
-    time_int = time.split(':')[0]*100 + time.split(':')[1]
+    time_int = int(time.split(':')[0]*100 + time.split(':')[1])
     if ampm == 'am':
         return '{:04}'.format(str(time_int))
     elif ampm == 'pm':
-        return '{:04}'.format(str(time_int + 1200))
+        return '{:04}'.format(str(time_int%1200 + 1200))
 
 def parse_time_range(time_string):
     time_components = time_string.split('–').rstrip().lstrip()
