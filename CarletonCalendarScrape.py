@@ -111,3 +111,10 @@ def event_list_to_json_file(event_list):
 	f.write(json_info)
 	f.close()
 	
+def main():
+	e = get_events_from_url();
+	event_list_to_json_file(e)
+	
+if __name__ == "__main__":
+	main()
+	
