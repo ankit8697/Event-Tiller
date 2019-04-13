@@ -114,7 +114,26 @@ def event_list_to_json_file(event_list):
 def main():
 	e = get_events_from_url();
 	event_list_to_json_file(e)
+	test_requests()
 	
 if __name__ == "__main__":
 	main()
+	
+# def test_requests():
+	# print('hi!')
+	# params = {
+		# "end": 
+		# {
+			# "dateTime": "2019-04-13T20:54:50+00:00"
+		# },
+		# "start": 
+		# {
+			# "dateTime": "2019-04-13T18:54:50+00:00"
+		# },
+		# "summary": "Our test event"
+	# }
+	
+	# url = 'https://www.googleapis.com/calendar/v3/calendars/busisd%40carleton.edu/events/'
+	
+	# r = requests.post(url = url, data = params)
 	
