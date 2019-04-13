@@ -22,7 +22,7 @@ def make_event():
 	ev['audiences'] = []
 	return ev
 	
-def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=daily'):
+def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?&view=daily'):	
 	'''
 		Returns a list of dictionaries representing events at Carleton from the given Carleton Calendar link.
 	'''
@@ -37,7 +37,7 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 		if(cur_class == ['event', 'hasTime']): #selects the html <li> tags that are actually events
 			cur_event = make_event()
 			cur_event['name'] = element.a.text
-			
+				
 			event_url = base_url + element.a.get('href')
 			cur_event['url'] = event_url
 			event_req = requests.get(event_url) #makes a request to the individual event's page
@@ -45,7 +45,7 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 			
 			for event_element in event_content.find_all('span'): #gets information from the individual event's page
 				cur_class = event_element.get('class')
-				if(cur_class == ['time']):
+				if(cur_class == ['time'] and cur_event['start_time']==None):
 					event_time_string = event_element.text
 					event_times = parser.parse_datetime(cur_event['url'], event_time_string)
 					cur_event['start_time'] = event_times[0]
@@ -67,10 +67,14 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 					cur_event['audiences'] = audiences
 				
 			all_events.append(cur_event)
+			event_req.close()
 			
 	return all_events
 	
 def get_events_filtered(event_list, name = None, start_date_time = None, end_date_time = None, categories = []):
+	'''
+		Filters a list of events to only include events between a specific name, start date/time, and categories.
+	'''
 	final_list = []
 	for cur_event in event_list:
 		if name is not None:
@@ -94,6 +98,9 @@ def get_events_filtered(event_list, name = None, start_date_time = None, end_dat
 	return final_list
 	
 def event_list_to_json(event_list):
+	'''
+		Converts a list of events to a json string. Dates are put into JavaScript friendly format.
+	'''
 	event_list_iso_dates = []
 	for ev in event_list:
 		ev_iso_dates = ev.copy()
@@ -106,6 +113,9 @@ def event_list_to_json(event_list):
 	return json.dumps(event_list_iso_dates)
 
 def event_list_to_json_file(event_list):
+	'''
+		Converts a list of events into JSON and puts them into the file 'event_data.json'
+	'''
 	json_info = event_list_to_json(event_list)
 	f = open("event_data.json", "w")
 	f.write(json_info)
@@ -118,26 +128,11 @@ def getAllData():
 def main():
 	e = get_events_from_url();
 	event_list_to_json_file(e)
+<<<<<<< HEAD
 	# test_requests()
+=======
+>>>>>>> 90992dba39e57ac34cc4984a23d1165d28b9d974
 	
 if __name__ == "__main__":
 	main()
-	
-# def test_requests():
-	# print('hi!')
-	# params = {
-		# "end": 
-		# {
-			# "dateTime": "2019-04-13T20:54:50+00:00"
-		# },
-		# "start": 
-		# {
-			# "dateTime": "2019-04-13T18:54:50+00:00"
-		# },
-		# "summary": "Our test event"
-	# }
-	
-	# url = 'https://www.googleapis.com/calendar/v3/calendars/busisd%40carleton.edu/events/'
-	
-	# r = requests.post(url = url, data = params)
 	

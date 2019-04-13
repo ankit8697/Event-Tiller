@@ -1,7 +1,6 @@
 import sys
 import datetime as dt
 
-
 def parse_single_time(time):
     time_components = time.split(' ')
     time_str = time_components[0]
