@@ -42,7 +42,7 @@
             <Option value ='C'>C</Option>
             <Option value ='D'>D</Option>
         </select>
-        <button onclick="submitTags(AreaChart)">Submit</button>
+        <button onclick="submitTags()">Submit</button>
         <canvas id='graph' width='80' hight='40'></canvas>
     </div>
 </body>
@@ -84,44 +84,59 @@
         button.style.display = 'block';
     }
     
-    var e = document.getElementById("tag1");
-    var tag1 = e.options[e.selectedIndex].value;
-    
-    var ctx = document.getElementById('graph').getContext('2d');
-    var AreaChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [{
-    label: 'tag',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: ['rgba(255, 99, 132, 0.2)',],
-    borderColor: ['rgba(255, 99, 132, 1)',],
-    borderWidth: 1
-    },{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: ['rgba(255, 99, 132, 0.2)',],
-    borderColor: ['rgba(255, 99, 132, 1)',],
-    borderWidth: 1 
-    }]
-    },
-    options: {
-    scales: {
-    yAxes: [{
-    ticks: {
-    beginAtZero: true
-    }
-    }]
-    }
-    }
-    });
-    
-    function submitTags(chart){
-        e = document.getElementById("tag1");
-        tag1 = e.options[e.selectedIndex].value;
-        chart.data.label.push(tag1);
-        chart.update();
+    function submitTags(){
+        var tag1 = document.getElementById("tag1").options[document.getElementById("tag1").selectedIndex].value;
+        var tag2 = document.getElementById("tag2").options[document.getElementById("tag2").selectedIndex].value;
+        var tag3 = document.getElementById("tag3").options[document.getElementById("tag3").selectedIndex].value;
+        var tag4 = document.getElementById("tag4").options[document.getElementById("tag4").selectedIndex].value;
+        var tag5 = document.getElementById("tag5").options[document.getElementById("tag5").selectedIndex].value;
+        var ctx = document.getElementById('graph').getContext('2d');
+        var AreaChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+            labels: ['Week 1','Week 2','Week 3','Week 4','Week 5','Week 6','Week 7','Week 8','Week 9','Week 10'],
+        datasets: [{
+            label: tag1,
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)',],
+            borderColor: ['rgba(255, 99, 132, 1)',],
+            borderWidth: 1
+        },{
+            label: tag2,
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)',],
+            borderColor: ['rgba(255, 99, 132, 1)',],
+            borderWidth: 1 
+        },{
+            label: tag3,
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)',],
+            borderColor: ['rgba(255, 99, 132, 1)',],
+            borderWidth: 1 
+        },{
+            label: tag4,
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)',],
+            borderColor: ['rgba(255, 99, 132, 1)',],
+            borderWidth: 1 
+        },{
+            label: tag5,
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: ['rgba(255, 99, 132, 0.2)',],
+            borderColor: ['rgba(255, 99, 132, 1)',],
+            borderWidth: 1 
+        }]
+            },
+            options: {
+            scales: {
+            yAxes: [{
+            ticks: {
+            beginAtZero: true
+        }
+        }]
+        }
+        }
+        });
     }
 
     var ctx = document.getElementById('calendar').getContext('2d');
