@@ -32,18 +32,18 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 
 	base_url = 'https://apps.carleton.edu/calendar/'
 	all_events = []
-	for element in content.find_all('li'):
+	for element in content.find_all('li'):  #iterates over the events on the day being looked at
 		cur_class = element.get('class')
-		if(cur_class == ['event', 'hasTime']): #iterates over the events on the day being looked at
+		if(cur_class == ['event', 'hasTime']): #selects the html <li> tags that are actually events
 			cur_event = make_event()
 			cur_event['name'] = element.a.text
 			
 			event_url = base_url + element.a.get('href')
 			cur_event['url'] = event_url
-			event_req = requests.get(event_url)
+			event_req = requests.get(event_url) #makes a request to the individual event's page
 			event_content = BeautifulSoup(event_req.content, 'html.parser')
 			
-			for event_element in event_content.find_all('span'):
+			for event_element in event_content.find_all('span'): #gets information from the individual event's page
 				cur_class = event_element.get('class')
 				if(cur_class == ['time']):
 					event_time_string = event_element.text
@@ -96,7 +96,7 @@ def get_events_filtered(event_list, name = None, start_date_time = None, end_dat
 def event_list_to_json(event_list):
 	event_list_iso_dates = []
 	for ev in event_list:
-		ev_iso_dates = ev.copy
+		ev_iso_dates = ev.copy()
 		if ev_iso_dates['start_time'] is not None:
 			ev_iso_dates['start_time'] = ev_iso_dates['start_time'].isoformat()
 		if ev_iso_dates['end_time'] is not None:
@@ -104,4 +104,10 @@ def event_list_to_json(event_list):
 		event_list_iso_dates.append(ev_iso_dates)
 	
 	return json.dumps(event_list_iso_dates)
-		
+
+def event_list_to_json_file(event_list):
+	json_info = event_list_to_json(event_list)
+	f = open("event_data.json", "w")
+	f.write(json_info)
+	f.close()
+	
