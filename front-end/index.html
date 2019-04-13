@@ -7,13 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <button onclick="showCalendar">Planning an Event</button>
-    <button onclick="showAnalysis">Analysis</button>
+
+
+
+    <button id="calendar" onclick="showCalendar()">Planning an Event</button>
+    <button onclick="showAnalysis()">Analysis</button>
 </body>
 
 <script>
     function showAnalysis() {
-        
+        var button = document.getElementById("calendar");
+        button.style.display = 'none';
     }
 </script>
 </html>
