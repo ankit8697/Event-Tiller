@@ -24,7 +24,7 @@ def parse_time_range(time_string, start_date):
         time_components[i] = time_components[i].rstrip().lstrip()
 
     if len(time_components) == 1:   # default event length 1 hr
-        time1 = time_components[0].split(' ')
+        time1 = time_components[0]
         start_str = parse_single_time(time1)
         end_str = str(int(start_time) + 100)
     

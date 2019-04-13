@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import parser
 
 def make_event():
 	'''
@@ -45,7 +46,10 @@ def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=dai
 			for event_element in event_content.find_all('span'):
 				cur_class = event_element.get('class')
 				if(cur_class == ['time']):
-					cur_event['time'] = event_element.text
+					event_time_string = event_element.text
+					event_times = parser.parse_datetime(cur_event['url'], event_time_string)
+					cur_event['start_time'] = event_times[0]
+					cur_event['end_time'] = event_times[1]
 				if(cur_class == ['location']):
 					cur_event['location'] = event_element.text
 				
@@ -89,7 +93,7 @@ def get_events_filtered(event_list, name = None, start_date_time = None, end_dat
 		final_list.append(cur_event)
 	return final_list
 	
-def event_list_to_json(event_list);
+def event_list_to_json(event_list):
 	event_list_iso_dates = []
 	for ev in event_list:
 		ev_iso_dates = ev.copy
