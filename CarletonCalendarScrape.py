@@ -115,6 +115,6 @@ def main():
 	e = get_events_from_url();
 	event_list_to_json_file(e)
 	
-if __name__ == "main":
+if __name__ == "__main__":
 	main()
 	
