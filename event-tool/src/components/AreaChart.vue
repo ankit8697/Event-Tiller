@@ -1,6 +1,6 @@
 <template>
-    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <div id="chartContainer" style="height: 300px; width: 100%;">
+    </div>
 </template>
 
 <script>
@@ -10,6 +10,7 @@
         components: {
         }
     }
+    import * as CanvasJS from "../CanvasJS/canvasjs.min.js"
         window.onload = function () {
 
 var chart = new CanvasJS.Chart("chartContainer", {
