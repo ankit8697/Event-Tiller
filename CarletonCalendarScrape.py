@@ -3,6 +3,14 @@ import requests
 import json
 
 def make_event():
+	'''
+		Makes a Carleton Event dictionary, and initializes each field with default values.
+		name: name of event
+		url: url of event page
+		start_time: datetime object representing the event's start time and date
+		end_time: datetime object representing the event's end time and date
+		location: 
+	'''
 	ev = {}
 	ev['name'] = ''
 	ev['url'] = ''
@@ -15,7 +23,7 @@ def make_event():
 	
 def get_events_from_url(site_url = 'https://apps.carleton.edu/calendar/?view=daily'):
 	'''
-		Returns a list of CarletonEvent objects from the given Carleton Calendar link.
+		Returns a list of dictionaries representing events at Carleton from the given Carleton Calendar link.
 	'''
 	
 	site_req = requests.get(site_url)
