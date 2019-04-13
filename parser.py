@@ -1,5 +1,9 @@
-def parse_single_time(time, ampm):
-    time_int = int(time.split(':')[0]*100 + time.split(':')[1])
+def parse_single_time(time):
+    time_components = time.split(' ')
+    time_str = time_components[0]
+    ampm = time_components[1]
+
+    time_int = int(time_str.split(':')[0]*100 + time_str.split(':')[1])
     if ampm == 'am':
         return '{:04}'.format(str(time_int))
     elif ampm == 'pm':
@@ -14,10 +18,15 @@ def parse_time_range(time_string):
         end_time = str(int(start_time) + 100)
     
     else:
-        time1 = time_components[0].split(' ')
-        time2 = time_components[1].split(' ')
-        if len(time1) == 1:
-            time1[1] == time2[1]
+        time1_components = time_components[0].split(' ')
+        time2_components = time_components[1].split(' ')
+        
+        if len(time1_components) == 1:
+            time1_components.append(time2_components[1])
+        
+        time1 = time1_components[0] + time1_components[1]
+        time2 = time2_components[0] + time2_components[1]
+
         start_time = parse_single_time(time1)
         end_time = parse_single_time(time2)
     
