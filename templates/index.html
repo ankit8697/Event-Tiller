@@ -6,15 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 </head>
 <body>
     <button onclick="showCalendar()">Planning an Event</button>
     <button onclick="showAnalysis()">Analysis</button>
-    <div id="calendarHolder">
-        <canvas id="calendar" width="80" height="40"></canvas>
-    </div>
-    
-    <div id='anaylysis'>
+    <canvas id="calendar" width="80" height="40"></canvas>
+    <div id='analysis'>
         <select id='tag1'>
             <Option value ='A'>A</Option>
             <Option value ='B'>B</Option>
@@ -77,31 +75,31 @@
     var twentytwo = []
     var twentythree = []
 
+
     function showAnalysis() {
-        var button = document.getElementById("calendarHolder");
+        var button = document.getElementById("calendar");
         button.style.display = 'none';
-        console.log(allData)
     }
-    function showCalendar() {
-        var button = document.getElementById("calendarHolder");
-        button.style.display = "block";
+    function showCalender() {
+        var button = document.getElementById("calendar");
+        button.style.display = 'block';
     }
 
-        fetch('/data')
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            parseDataIntoBuckets(data)
-        })
-        .catch(err => {
-            
-        })
+    fetch('/data')
+    .then(res => {
+    return res.json()
+    })
+    .then(data => {
+    parseDataIntoBuckets(data)
+    })
+    .catch(err => {
+
+    })
 
     function parseDataIntoBuckets(data) {
-        
+
     }
-        
+    
     function submitTags(){
         var tag1 = document.getElementById("tag1").options[document.getElementById("tag1").selectedIndex].value;
         var tag2 = document.getElementById("tag2").options[document.getElementById("tag2").selectedIndex].value;
