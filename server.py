@@ -12,7 +12,7 @@ def data():
     return CarletonCalendarScrape.getAllData()
 
 @app.route('/graph')
-def graph():
+def graphServer():
     return render_template("graph.html")
 
 @app.route('/index.html')
@@ -21,10 +21,6 @@ def index():
 
 @app.route('/graph.html')
 def graph():
-    return render_template("graph.html")
-
-@app.route('/graph')
-def graphServer():
     return render_template("graph.html")
 
 @app.route('/stylesheet.css')

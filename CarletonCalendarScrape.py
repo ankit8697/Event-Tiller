@@ -114,9 +114,9 @@ def event_list_to_json(event_list):
     return json.dumps(event_list_iso_dates)
 
 def event_list_to_json_file(event_list):
-'''
+    '''
     Converts a list of events into JSON and puts them into the file 'event_data.json'
-'''
+    '''
     json_info = event_list_to_json(event_list)
     f = open("event_data.json", "w")
     f.write(json_info)
