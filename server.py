@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import CarletonCalendarScrape
+import json_parser
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
@@ -33,5 +34,6 @@ def style():
 
 if __name__ == "__main__":
     CarletonCalendarScrape.main()
+    json_parser.parse_categories('event_data.json')
     app.run(debug = True)
     
