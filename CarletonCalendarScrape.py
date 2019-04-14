@@ -3,7 +3,7 @@ import requests
 import sys
 import os
 import json
-import parser
+import event_parser as parser
 
 def make_event():
     '''
