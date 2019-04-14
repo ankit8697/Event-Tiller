@@ -13,13 +13,13 @@
     <div id='analysis'>
         <h4>Select 5 Categories</h4>
         <select id='tag1'>
-            <Option value='A'>A</Option>
+            <Option value='Film'>Film</Option>
             <Option value='B'>B</Option>
             <Option value='C'>C</Option>
             <Option value='D'>D</Option>
         </select>
         <select id='tag2'>
-            <Option value='A'>A</Option>
+            <Option value='Comps'>Comps</Option>
             <Option value='B'>B</Option>
             <Option value='C'>C</Option>
             <Option value='D'>D</Option>
@@ -51,12 +51,52 @@
 <script>
      
      function showCalender() {
-     var button = document.getElementById("calendar");
-     button.style.display = 'block';
+		var button = document.getElementById("calendar");
+		button.style.display = 'block';
      }
 	
 	 var allData = {{all_data|tojson}};
 	 
+	 function makeDataAprilJune(categories) {
+		 dates = [
+			new Date(2019, 03, 01, 0,0,0,0),
+			new Date(2019, 03, 08, 0,0,0,0),
+			new Date(2019, 03, 15, 0,0,0,0),
+			new Date(2019, 03, 22, 0,0,0,0),
+			new Date(2019, 03, 29, 0,0,0,0),
+			new Date(2019, 04, 06, 0,0,0,0),
+			new Date(2019, 04, 13, 0,0,0,0),
+			new Date(2019, 04, 20, 0,0,0,0),
+			new Date(2019, 04, 27, 0,0,0,0),
+			new Date(2019, 05, 03, 0,0,0,0),
+			new Date(2019, 05, 10, 0,0,0,0)
+		 ]
+
+		category_data = {};
+		for (i=0; i<categories.length; i++){
+			category_data[categories[i]] = new Array(10).fill(0)
+		}
+		
+		for(i=0;i<allData.length;i++){
+			cur_event = allData[i];
+			for(j=0;j<categories.length;j++){
+				if (cur_event["categories"].includes(categories[j])){
+					
+					for (k=0;k<dates.length-1;k++){
+						var cur_event_date = new Date(cur_event["start_time"]);
+						
+						if (cur_event_date >= dates[k] && cur_event_date < dates[k+1]){
+							category_data[categories[j]][k] += 1;
+						}
+					}
+					
+					
+				}
+			}
+		}
+		
+		return category_data;
+	 }
 	 
      function submitTags(){
      var tag1 = document.getElementById("tag1").options[document.getElementById("tag1").selectedIndex].value;
@@ -64,6 +104,10 @@
      var tag3 = document.getElementById("tag3").options[document.getElementById("tag3").selectedIndex].value;
      var tag4 = document.getElementById("tag4").options[document.getElementById("tag4").selectedIndex].value;
      var tag5 = document.getElementById("tag5").options[document.getElementById("tag5").selectedIndex].value;
+	 
+	 var categories = [tag1, tag2, tag3, tag4, tag5];
+	 var final_data = makeDataAprilJune(categories);
+	 
      var ctx = document.getElementById('graph').getContext('2d');
      var AreaChart = new Chart(ctx, {
      type: 'line',
@@ -71,31 +115,31 @@
      labels: ['Week 1','Week 2','Week 3','Week 4','Week 5','Week 6','Week 7','Week 8','Week 9','Week 10'],
      datasets: [{
      label: tag1,
-     data: [12, 19, 3, 5, 2, 3],
+     data: final_data[categories[0]],
      backgroundColor: ['rgba(255, 99, 132, 0.2)',],
      borderColor: ['rgba(255, 99, 132, 1)',],
      borderWidth: 1
      },{
      label: tag2,
-     data: [12, 19, 3, 5, 2, 3],
+     data: final_data[categories[1]],
      backgroundColor: ['rgba(255, 99, 132, 0.2)',],
      borderColor: ['rgba(255, 99, 132, 1)',],
      borderWidth: 1
      },{
      label: tag3,
-     data: [12, 19, 3, 5, 2, 3],
+     data: final_data[categories[2]],
      backgroundColor: ['rgba(255, 99, 132, 0.2)',],
      borderColor: ['rgba(255, 99, 132, 1)',],
      borderWidth: 1
      },{
      label: tag4,
-     data: [12, 19, 3, 5, 2, 3],
+     data: final_data[categories[3]],
      backgroundColor: ['rgba(255, 99, 132, 0.2)',],
      borderColor: ['rgba(255, 99, 132, 1)',],
      borderWidth: 1
      },{
      label: tag5,
-     data: [12, 19, 3, 5, 2, 3],
+     data: final_data[categories[4]],
      backgroundColor: ['rgba(255, 99, 132, 0.2)',],
      borderColor: ['rgba(255, 99, 132, 1)',],
      borderWidth: 1
