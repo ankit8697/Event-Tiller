@@ -141,7 +141,7 @@ def getAllDataPython():
 def gen_months_data(start_month, end_month):
     for i in range(start_month, end_month+1):
         e = get_events_from_url('https://apps.carleton.edu/calendar/?view=monthly&start_date=2019-{:02}-01'.format(i))
-        filename = '2019_{:2}_data.json'.format(i)
+        filename = '2019_{:02}_data.json'.format(i)
         os.system('touch {}'.format(filename))
         outfile = open(filename, 'w')
         print(e, file=outfile)
