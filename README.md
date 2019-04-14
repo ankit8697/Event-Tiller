@@ -1,4 +1,4 @@
-# HackCarleton
+# Event Tiller
 ### Developed by: 
 
 - Daniel Busis
