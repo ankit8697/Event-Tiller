@@ -3,7 +3,6 @@ import requests
 import sys
 import json
 import parser
-import json_parser
 
 def make_event():
     '''
@@ -122,10 +121,16 @@ def event_list_to_json_file(event_list):
     f = open("event_data.json", "w")
     f.write(json_info)
     f.close()
-    
+   
+def add_to_categories(list_of_dictionaries, existing_categories=set()):
+    for event in list_of_dictionaries:
+        categories = event['categories']
+        for category in categories:
+            existing_categories.add(category)
+    return existing_categories
+
 def getAllData():
     e = get_events_from_url()
-    json_parser.categories(e)
     return event_list_to_json(e)
 
 def getAllDataPython():

@@ -34,6 +34,7 @@ def style():
 
 if __name__ == "__main__":
     all_data = CarletonCalendarScrape.getAllDataPython()
+    all_categories = CarletonCalendarScrape.add_to_categories(all_data)
     #CarletonCalendarScrape.main()
     app.run(debug = True)
     
