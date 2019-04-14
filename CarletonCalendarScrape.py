@@ -114,12 +114,12 @@ def event_list_to_json(event_list):
     
     return json.dumps(event_list_iso_dates)
 
-def event_list_to_json_file(event_list):
+def event_list_to_json_file(event_list, filename="event_data.json"):
     '''
         Converts a list of events into JSON and puts them into the file 'event_data.json'
     '''
     json_info = event_list_to_json(event_list)
-    f = open("event_data.json", "w")
+    f = open(filename, "w")
     f.write(json_info)
     f.close()
    
@@ -142,10 +142,7 @@ def gen_months_data(start_month, end_month):
     for i in range(start_month, end_month+1):
         e = get_events_from_url('https://apps.carleton.edu/calendar/?view=monthly&start_date=2019-{:02}-01'.format(i))
         filename = '2019_{:02}_data.json'.format(i)
-        os.system('touch {}'.format(filename))
-        outfile = open(filename, 'w')
-        print(e, file=outfile)
-        outfile.close()
+        event_list_to_json_file(e, filename)
 
 
 def gen_Apr_to_Jun():
