@@ -9,7 +9,10 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 </head>
 <body>
-    <button onclick="location.href='graph.html'" href="graph.html">Analysis</button>
+    <ul>
+        <li class="active"><a href="index.html">Plan an Event</a></li>
+        <li><a href="graph.html">Analysis</a></li>
+    </ul>
     <canvas id="calendar" width="80" height="40"></canvas>
 </body>
 
@@ -75,49 +78,55 @@
         button.style.display = 'block';
     }
 
-    fetch('/data')
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            parseDataIntoBuckets(data)
-        })
-        .catch(err => {
-
-        })
-
-    function parseDataIntoBuckets(data) {
-        for (i in data) {
-            console.log('hello')
-            currentObject = JSON.parse(data[i])
-            console.log(currentObject)
-        }
-    }
+    var data = {{all_data|tojson}};
     
+    for (i in data) {
+        var current = data[i]
+        var start_date = new Date(current['start_time'])
+        var end_date = new Date(current['end_date'])
+        buckets[start_date.getHours()+""].push(current)
+    }
+
+    var eventFrequency = []
+    for (i in buckets) {
+        eventFrequency.push(buckets[i].length)
+    }
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    var backgroundColors = []
+    var borderColors = []
+    for (i in buckets) {
+        var red = getRandomInt(255)
+        var green = getRandomInt(255)
+        var blue = getRandomInt(255)
+        var color_value = `rgba(${red},${green},${blue},0.2`
+        backgroundColors.push(color_value)
+    }
+
+    for (i in buckets) {
+        var red = getRandomInt(255)
+        var green = getRandomInt(255)
+        var blue = getRandomInt(255)
+        var color_value = `rgba(${red},${green},${blue},1`
+        borderColors.push(color_value)
+    }
+
     var ctx = document.getElementById('calendar').getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: 
+    ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM',
+     '9AM', '10AM', '11AM', '12PM', '1PM','2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM',
+     '9PM', '10PM', '11PM'],
     datasets: [{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
-    backgroundColor: [
-    'rgba(255, 99, 132, 0.2)',
-    'rgba(54, 162, 235, 0.2)',
-    'rgba(255, 206, 86, 0.2)',
-    'rgba(75, 192, 192, 0.2)',
-    'rgba(153, 102, 255, 0.2)',
-    'rgba(255, 159, 64, 0.2)'
-    ],
-    borderColor: [
-    'rgba(255, 99, 132, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)'
-    ],
+    label: '# of Events in the Day',
+    data: eventFrequency,
+    backgroundColor: backgroundColors,
+    borderColor: borderColors,
     borderWidth: 1
     }]
     },

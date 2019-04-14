@@ -6,34 +6,31 @@ app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def root():
-    return render_template("index.html")
+    return render_template("index.html", all_data=all_data)
 
 @app.route('/data')
 def data():
     return CarletonCalendarScrape.getAllData()
 
 @app.route('/graph')
-def graph():
-    return render_template("graph.html", all_data = all_data)
+def graphServer():
+    return render_template("graph.html", all_data=all_data)
 
 @app.route('/index.html')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", all_data = all_data)
 
 @app.route('/graph.html')
 def graph2():
-    return render_template("graph.html")
-
-@app.route('/graph')
-def graphServer():
-    return render_template("graph.html")
+    return render_template("graph.html", all_data=all_data)
 
 @app.route('/stylesheet.css')
 def style():
-    return render_template("stylesheet.css")
+    return render_template("stylesheet.css", all_data=all_data)
 
 if __name__ == "__main__":
     all_data = CarletonCalendarScrape.getAllDataPython()
+    all_categories = CarletonCalendarScrape.add_to_categories(all_data)
     #CarletonCalendarScrape.main()
     app.run(debug = True)
     

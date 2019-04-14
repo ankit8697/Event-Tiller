@@ -2,10 +2,44 @@ body{
      background-color:lightyellow;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: blue;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1.2em 2em;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: darkblue;
+}
+
+.active a{
+    background-color: gold;
+    color: black;
+}
+
+.active a:hover{
+    background-color: gold;
+} 
+
 #analysis{
-    width: 50%;
+    max-width: 26em;
     margin: auto;
-    padding:.25em;
+    padding:.5em;
     background-color:gold;
     border: 3px solid blue;
     border-radius: 1em;
@@ -16,11 +50,12 @@ button{
     border:none;
     border-radius: .3em;
     color: white;
-    padding: .15em 1em;
+    padding: .1em 1em;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 1.1em;
+    display: block;
+    font-size: 1em;
+    margin: auto;
     
 }
 
@@ -31,9 +66,9 @@ h4{
 }
 
 select{
-    width:15em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    width: 15em;
+    margin: .2em;
 }
 
 h3{
@@ -41,7 +76,4 @@ h3{
     margin: auto;
     margin-top: 15px;
     
-}
-#tag1 {
-    background-color:cornflowerblue;
 }
