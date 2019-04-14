@@ -116,29 +116,29 @@
 
     var ctx = document.getElementById('calendar').getContext('2d');
     var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-    labels: 
-    ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM',
-     '9AM', '10AM', '11AM', '12PM', '1PM','2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM',
-     '9PM', '10PM', '11PM'],
-    datasets: [{
-    label: '# of Events in the Day',
-    data: eventFrequency,
-    backgroundColor: backgroundColors,
-    borderColor: borderColors,
-    borderWidth: 1
-    }]
-    },
-    options: {
-    scales: {
-    yAxes: [{
-    ticks: {
-    beginAtZero: true
-    }
-    }]
-    }
-    }
+        type: 'bar',
+        data: {
+            labels: 
+                ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM',
+                '9AM', '10AM', '11AM', '12PM', '1PM','2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM',
+                '9PM', '10PM', '11PM'],
+            datasets: [{
+                label: '# of Events in the Day',
+                data: eventFrequency,
+                backgroundColor: backgroundColors,
+                borderColor: borderColors,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
     });
 </script>
 </html>
