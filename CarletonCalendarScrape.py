@@ -115,11 +115,7 @@ def event_list_to_json(event_list):
 
 def event_list_to_json_file(event_list):
     '''
-<<<<<<< HEAD
-    Converts a list of events into JSON and puts them into the file 'event_data.json'
-=======
         Converts a list of events into JSON and puts them into the file 'event_data.json'
->>>>>>> 8c185599930f1b3240299d61aa7b0912d165f720
     '''
     json_info = event_list_to_json(event_list)
     f = open("event_data.json", "w")

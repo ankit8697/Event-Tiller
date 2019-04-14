@@ -87,11 +87,11 @@
         })
 
     function parseDataIntoBuckets(data) {
-        console.log(data)
         for (i in data) {
-            console.log('hello')
-            currentObject = JSON.parse(data[i])
-            console.log(currentObject)
+            var current = data[i]
+            if (current['start_time']) {
+                
+            }
         }
     }
     
