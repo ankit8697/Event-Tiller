@@ -8,9 +8,9 @@ app = Flask(__name__, static_url_path='')
 def root():
     return render_template("index.html", all_data=all_data)
 
-@app.route('/data')
-def data():
-    return CarletonCalendarScrape.getAllData()
+# @app.route('/data')
+# def data():
+#     return CarletonCalendarScrape.getAllData()
 
 @app.route('/graph')
 def graphServer():

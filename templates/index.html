@@ -82,10 +82,13 @@
     
     for (i in data) {
         var current = data[i]
-        var start_date = new Date(current['start_time'])
-        var end_date = new Date(current['end_date'])
-        buckets[start_date.getHours()+""].push(current)
+        var start_time = new Date(current['start_time'])
+        var end_time = new Date(current['end_time'])
+        for (var j = start_time.getHours(); j <= end_time.getHours(); j++) {
+            buckets[j+""].push(current)
+        }
     }
+    console.log(buckets)
 
     var eventFrequency = []
     for (i in buckets) {
