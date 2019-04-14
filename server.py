@@ -13,9 +13,10 @@ def data():
 
 @app.route('/graph')
 def graph():
-    return render_template("graph.html")
+    return render_template("graph.html", all_data = all_data)
 
 if __name__ == "__main__":
-    CarletonCalendarScrape.main()
+    all_data = CarletonCalendarScrape.getAllData()
+    #CarletonCalendarScrape.main()
     app.run(debug = True)
     
