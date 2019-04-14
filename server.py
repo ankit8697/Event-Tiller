@@ -28,6 +28,7 @@ def style():
     return render_template("stylesheet.css")
 
 if __name__ == "__main__":
-    CarletonCalendarScrape.main()
+    all_data = CarletonCalendarScrape.getAllData()
+    #CarletonCalendarScrape.main()
     app.run(debug = True)
     
