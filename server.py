@@ -6,7 +6,7 @@ app = Flask(__name__, static_url_path='')
 
 @app.route('/')
 def root():
-    return render_template("index.html")
+    return render_template("index.html", all_data=all_data)
 
 @app.route('/data')
 def data():
@@ -14,19 +14,19 @@ def data():
 
 @app.route('/graph')
 def graphServer():
-    return render_template("graph.html")
+    return render_template("graph.html", all_data=all_data)
 
 @app.route('/index.html')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", all_data = all_data)
 
 @app.route('/graph.html')
 def graph2():
-    return render_template("graph.html")
+    return render_template("graph.html", all_data=all_data)
 
 @app.route('/stylesheet.css')
 def style():
-    return render_template("stylesheet.css")
+    return render_template("stylesheet.css", all_data=all_data)
 
 if __name__ == "__main__":
     all_data = CarletonCalendarScrape.getAllDataPython()

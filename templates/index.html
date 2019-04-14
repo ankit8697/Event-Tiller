@@ -75,25 +75,28 @@
         button.style.display = 'block';
     }
 
-    fetch('/data')
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            parseDataIntoBuckets(data)
-        })
-        .catch(err => {
+    var data = {{all_data|tojson}};
+    
 
-        })
+    //fetch('/data')
+    //    .then(res => {
+    //       return res.json()
+     //   })
+     //   .then(data => {
+     //       // parseDataIntoBuckets(data)
+     //   })
+    //    .catch(err => {
 
-    function parseDataIntoBuckets(data) {
+     //   })
+
+    // function parseDataIntoBuckets(data) {
         for (i in data) {
             var current = data[i]
-            if (current['start_time']) {
-                
-            }
+            var start_date = new Date(current['start_time'])
+            var end_date = new Date(current['end_date'])
+            buckets[start_date.getHours()+""].push(current)
         }
-    }
+     // } 
     
     var ctx = document.getElementById('calendar').getContext('2d');
     var myChart = new Chart(ctx, {
