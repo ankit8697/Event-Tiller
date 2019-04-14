@@ -16,14 +16,6 @@ def data():
 def graphServer():
     return render_template("graph.html", all_data=all_data)
 
-@app.route('/index.html')
-def index():
-    return render_template("index.html", all_data = all_data)
-
-@app.route('/graph.html')
-def graph2():
-    return render_template("graph.html", all_data=all_data)
-
 @app.route('/stylesheet.css')
 def style():
     return render_template("stylesheet.css", all_data=all_data)
