@@ -1,7 +1,44 @@
-analysis {
-    background-color: cornflowerblue;
+body{
+     background-color:lightyellow;
+}
+
+#analysis{
+    max-width: 26em;
+    margin: auto;
+    padding:.5em;
+    background-color:gold;
+    border: 3px solid blue;
+    border-radius: 1em;
+}
+
+button{
+    background-color: blue;
+    border:none;
+    border-radius: .3em;
+    color: white;
+    padding: .1em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
     
 }
-tag1 {
-    color: cornflowerblue;
+
+h4{
+    text-align: center;
+    margin-top: .75em;
+    margin-bottom: .75em;
+}
+
+select{
+    margin: 0 auto;
+    width: 15em;
+    margin: .2em;
+}
+
+h3{
+    text-align: center;
+    margin: auto;
+    margin-top: 15px;
+    
 }
