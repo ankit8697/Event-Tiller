@@ -17,6 +17,7 @@ This project considers data about events on campus, with the goals of:
 
 ## Tools Used
 
-- Event scraping from [Carleton Campus Calendar](https://apps.carleton.edu/calendar/?view=monthly) and event parsing using Python
+- Event scraping from [Carleton Campus Calendar](https://apps.carleton.edu/calendar/?view=monthly) using BeautifulSoup (Python module)
+- Event processing using Python
 - Local server hosted using Flask
 - Visualizations built using Chart.js and HTML
