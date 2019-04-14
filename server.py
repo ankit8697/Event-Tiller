@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import CarletonCalendarScrape
-import json_parser
+import json
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__, static_url_path='')
 
@@ -14,7 +14,10 @@ def data():
 
 @app.route('/graph')
 def graphServer():
-    return render_template("graph.html", all_data=all_data)
+    f1 = open("2019_04_data.json")
+    f1_data = json.loads(f1.read())
+    f1.close()
+    return render_template("graph.html", all_data=f1_data)
 
 @app.route('/stylesheet.css')
 def style():
