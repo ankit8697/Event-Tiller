@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 </head>
 <body>
     <button onclick="location.href='index.html'" href="index.html">Planning an Event</button>
     <div id='analysis'>
+        <h4>Select 5 Categories</h4>
         <select id='tag1'>
             <Option value='A'>A</Option>
             <Option value='B'>B</Option>
@@ -41,8 +43,10 @@
             <Option value='D'>D</Option>
         </select>
         <button onclick="submitTags()">Submit</button>
-        <canvas id='graph' width='80' hight='40'></canvas>
     </div>
+    <h3>Number of events per week this term</h3>
+    <canvas id='graph' width='80' hight='40'></canvas>
+	<p id='lee'> </p>
 </body>
 <script>
      
