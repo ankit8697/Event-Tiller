@@ -16,11 +16,11 @@ button{
     border:none;
     border-radius: .3em;
     color: white;
-    padding: .15em 1em;
+    padding: .1em 1em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 1.1em;
+    font-size: 1em;
     
 }
 
@@ -41,7 +41,4 @@ h3{
     margin: auto;
     margin-top: 15px;
     
-}
-#tag1 {
-    background-color:cornflowerblue;
 }
