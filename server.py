@@ -15,6 +15,22 @@ def data():
 def graph():
     return render_template("graph.html", all_data = all_data)
 
+@app.route('/index.html')
+def index():
+    return render_template("index.html")
+
+@app.route('/graph.html')
+def graph():
+    return render_template("graph.html")
+
+@app.route('/graph')
+def graphServer():
+    return render_template("graph.html")
+
+@app.route('/stylesheet.css')
+def style():
+    return render_template("stylesheet.css")
+
 if __name__ == "__main__":
     all_data = CarletonCalendarScrape.getAllData()
     #CarletonCalendarScrape.main()
