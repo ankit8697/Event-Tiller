@@ -9,7 +9,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css" />
 </head>
 <body>
-    <button onclick="location.href='graph.html'" href="graph.html">Analysis</button>
+    <ul>
+        <li><a href="graph.html">Analysis</a></li>
+    </ul>
     <canvas id="calendar" width="80" height="40"></canvas>
 </body>
 
@@ -77,35 +79,29 @@
 
     var data = {{all_data|tojson}};
     
+    for (i in data) {
+        var current = data[i]
+        var start_date = new Date(current['start_time'])
+        var end_date = new Date(current['end_date'])
+        buckets[start_date.getHours()+""].push(current)
+    }
 
-    //fetch('/data')
-    //    .then(res => {
-    //       return res.json()
-     //   })
-     //   .then(data => {
-     //       // parseDataIntoBuckets(data)
-     //   })
-    //    .catch(err => {
+    var eventFrequency = []
+    for (i in buckets) {
+        eventFrequency.push(buckets[i].length)
+    }
 
-     //   })
-
-    // function parseDataIntoBuckets(data) {
-        for (i in data) {
-            var current = data[i]
-            var start_date = new Date(current['start_time'])
-            var end_date = new Date(current['end_date'])
-            buckets[start_date.getHours()+""].push(current)
-        }
-     // } 
-    
     var ctx = document.getElementById('calendar').getContext('2d');
     var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: 
+    ['12AM', '1AM', '2AM', '3AM', '4AM', '5AM', '6AM', '7AM', '8AM',
+     '9AM', '10AM', '11AM', '12PM', '1PM','2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM',
+     '9PM', '10PM', '11PM'],
     datasets: [{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3],
+    label: '# of Events in the Day',
+    data: eventFrequency,
     backgroundColor: [
     'rgba(255, 99, 132, 0.2)',
     'rgba(54, 162, 235, 0.2)',
