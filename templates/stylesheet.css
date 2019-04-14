@@ -2,6 +2,40 @@ body{
      background-color:lightyellow;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: blue;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 1.2em 2em;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: darkblue;
+}
+
+.active a{
+    background-color: gold;
+    color: black;
+}
+
+.active a:hover{
+    background-color: gold;
+} 
+
 #analysis{
     max-width: 26em;
     margin: auto;
@@ -19,8 +53,9 @@ button{
     padding: .1em 1em;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 1em;
+    margin: auto;
     
 }
 
