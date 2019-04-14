@@ -20,7 +20,7 @@ def index():
     return render_template("index.html")
 
 @app.route('/graph.html')
-def graph():
+def graph2():
     return render_template("graph.html")
 
 @app.route('/graph')
@@ -32,7 +32,7 @@ def style():
     return render_template("stylesheet.css")
 
 if __name__ == "__main__":
-    all_data = CarletonCalendarScrape.getAllData()
+    all_data = CarletonCalendarScrape.getAllDataPython()
     #CarletonCalendarScrape.main()
     app.run(debug = True)
     

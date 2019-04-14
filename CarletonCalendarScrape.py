@@ -125,6 +125,10 @@ def event_list_to_json_file(event_list):
 def getAllData():
     e = get_events_from_url()
     return event_list_to_json(e)
+
+def getAllDataPython():
+    e = get_events_from_url()
+    return e
 	
 def main():
     if len(sys.argv) > 1:
