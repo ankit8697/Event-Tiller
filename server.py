@@ -14,7 +14,7 @@ def data():
 
 @app.route('/graph')
 def graph():
-    return render_template("graph.html")
+    return render_template("graph.html", all_data = all_data)
 
 @app.route('/index.html')
 def index():
@@ -33,7 +33,7 @@ def style():
     return render_template("stylesheet.css")
 
 if __name__ == "__main__":
-    CarletonCalendarScrape.main()
-    json_parser.parse_categories('event_data.json')
+    all_data = CarletonCalendarScrape.getAllData()
+    #CarletonCalendarScrape.main()
     app.run(debug = True)
     

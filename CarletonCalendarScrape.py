@@ -114,9 +114,9 @@ def event_list_to_json(event_list):
     return json.dumps(event_list_iso_dates)
 
 def event_list_to_json_file(event_list):
-'''
-    Converts a list of events into JSON and puts them into the file 'event_data.json'
-'''
+    '''
+        Converts a list of events into JSON and puts them into the file 'event_data.json'
+    '''
     json_info = event_list_to_json(event_list)
     f = open("event_data.json", "w")
     f.write(json_info)
@@ -125,7 +125,7 @@ def event_list_to_json_file(event_list):
 def getAllData():
     e = get_events_from_url()
     return event_list_to_json(e)
-
+	
 def main():
     if len(sys.argv) > 1:
         if sys.argv[1] == '-m':
@@ -135,8 +135,9 @@ def main():
         else:
             url_appendment = 'daily'
         url = 'https://apps.carleton.edu/calendar/?view={}'.format(url_appendment)
-
-    e = get_events_from_url(url);
+        e = get_events_from_url(url)
+    else:
+        e = get_events_from_url()
     event_list_to_json_file(e)
     
 if __name__ == "__main__":
