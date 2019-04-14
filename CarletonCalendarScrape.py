@@ -3,6 +3,7 @@ import requests
 import sys
 import json
 import parser
+import json_parser
 
 def make_event():
     '''
@@ -124,6 +125,7 @@ def event_list_to_json_file(event_list):
     
 def getAllData():
     e = get_events_from_url()
+    json_parser.categories(e)
     return event_list_to_json(e)
 	
 def main():
