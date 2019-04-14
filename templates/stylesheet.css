@@ -3,9 +3,9 @@ body{
 }
 
 #analysis{
-    width: 50%;
+    max-width: 26em;
     margin: auto;
-    padding:.25em;
+    padding:.5em;
     background-color:gold;
     border: 3px solid blue;
     border-radius: 1em;
@@ -31,9 +31,9 @@ h4{
 }
 
 select{
-    width:15em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    width: 15em;
+    margin: .2em;
 }
 
 h3{
